@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <li>
         {{ video.snippet.title }}
-    </div>
+    </li>
 </template>
 <script>
 export default {
