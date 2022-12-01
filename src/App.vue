@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <SearchBar @termChange="onTermChange"></SearchBar>
-    <VideoList :videos="videos" @videoSelect="onVideoSelect"></VideoList>
+    <div class="row">
+      <VideoDetail :video="selectedVideo"></VideoDetail>
+      <VideoList :videos="videos" @videoSelect="onVideoSelect"></VideoList>
+    </div>
   </div>
 </template>
 
@@ -9,6 +12,7 @@
 import axios from 'axios';
 import SearchBar from "./components/SearchBar";
 import VideoList from './components/VideoList';
+import VideoDetail from './components/VideoDetail';
 
 // Google API documentation: https://developers.google.com/youtube/v3/docs/search
 const API_KEY = 'AIzaSyDR0SPom8u7YGlMSNSW7sT2ngpDJ4hTiJc';
@@ -18,12 +22,14 @@ export default {
   name: "App",
   data() {
     return {
-      videos: []
+      videos: [],
+      selectedVideo: null
     }
   },
   components: {
     SearchBar,
-    VideoList
+    VideoList,
+    VideoDetail
   },
   methods: {
     onTermChange(term) {
@@ -41,7 +47,7 @@ export default {
       console.log(this.videos);
     },
     onVideoSelect(video){
-      console.log(video);
+      this.selectedVideo = video;
     }
   }
 };
