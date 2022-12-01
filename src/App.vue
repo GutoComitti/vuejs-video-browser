@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <SearchBar @termChange="onTermChange"></SearchBar>
-    <VideoList :videos="videos"></VideoList>
+    <VideoList :videos="videos" @videoSelect="onVideoSelect"></VideoList>
   </div>
 </template>
 
@@ -39,6 +39,9 @@ export default {
     handleYoutubeResponse(res) {
       this.videos = res.data.items;
       console.log(this.videos);
+    },
+    onVideoSelect(video){
+      console.log(video);
     }
   }
 };
